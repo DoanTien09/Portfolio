@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doan Tien - Pentest Intern</title>
+    <!-- Load Tailwind CSS from CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind configuration for Inter font and custom colors -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              inter: ["Inter", "sans-serif"],
+            },
+            colors: {
+              "primary-dark": "#191919", // Main background color
+              "secondary-dark": "#232323", // Secondary background color, for content blocks
+              "accent-red": "#ee0000", // Accent red color
+              "text-light": "#d5d5d5", // Light text color
+              "text-muted": "#ffffff", // Muted text color (white)
+            },
+            // Add custom box-shadow for red glow
+            boxShadow: {
+              "red-glow":
+                "0 0 8px rgba(238, 0, 0, 0.4), 0 0 15px rgba(238, 0, 0, 0.2)", // Subtle red glow
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Load Inter font from Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #191919; /* Main background color similar to primary-dark */
+        color: #d5d5d5; /* Main text color similar to text-light */
+      }
+      /* Custom scrollbar for dark theme */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #232323; /* Scrollbar track color */
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #ee0000; /* Scrollbar thumb color */
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #cc0000; /* Scrollbar thumb color on hover */
+      }
+
+      /* CSS for typing cursor animation */
+      .typing-cursor {
+        display: inline-block;
+        width: 10px; /* Width of the cursor */
+        height: 1.2em; /* Height of the cursor, adjusted to line height */
+        background-color: #d6d6d6; /* Red color for the cursor */
+        vertical-align: middle;
+        margin-left: 5px;
+        opacity: 50; /* Initially hidden */
+      }
+
+      .typing-cursor.blinking {
+        animation: blink 0.8s infinite;
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <!-- Header/Navigation -->
+    <header
+      class="bg-secondary-dark shadow-lg py-4 px-6 md:px-12 fixed top-0 w-full z-50"
+    >
+      <div class="container mx-auto flex justify-between items-center">
+        <!-- Logo/Name -->
+        <a
+          href="#"
+          class="text-xl md:text-2xl font-bold text-accent-red hover:text-red-600 transition-colors duration-300"
+        >
+          Doan Tien
+        </a>
+        <!-- Navigation Menu -->
+        <nav>
+          <ul class="flex space-x-4 md:space-x-8">
+            <li>
+              <a
+                href="#home"
+                class="text-text-light hover:text-accent-red transition-colors duration-300 rounded-md py-2 px-3"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="#about"
+                class="text-text-light hover:text-accent-red transition-colors duration-300 rounded-md py-2 px-3"
+                >About</a
+              >
+            </li>
+            <li>
+              <a
+                href="#skills"
+                class="text-text-light hover:text-accent-red transition-colors duration-300 rounded-md py-2 px-3"
+                >Skills</a
+              >
+            </li>
+            <li>
+              <a
+                href="#projects"
+                class="text-text-light hover:text-accent-red transition-colors duration-300 rounded-md py-2 px-3"
+                >Projects</a
+              >
+            </li>
+            <li>
+              <a
+                href="#contact"
+                class="text-text-light hover:text-accent-red transition-colors duration-300 rounded-md py-2 px-3"
+                >Contact</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="pt-20">
+      <!-- Padding top to prevent header overlap -->
+      <!-- Hero Section -->
+      <section
+        id="home"
+        class="relative h-screen flex items-center justify-center bg-primary-dark overflow-hidden"
+      >
+        <!-- Background Image without overlay -->
+        <div
+          class="absolute inset-0 z-0"
+          style="
+            background-image: url('images/bg.png');
+            background-size: cover;
+            background-position: center;
+          "
+        ></div>
+
+        <div class="container mx-auto px-6 text-center relative z-10">
+          <div class="flex flex-col md:flex-row items-center justify-center">
+            <div class="md:w-1/2 mb-8 md:mb-0 md:pr-12">
+              <img
+                src="images/portrait.png"
+                alt="Doan Tien's Profile Photo"
+                class="w-full h-full md:w-120 md:h-120 rounded-lg object-cover mx-auto"
+              />
+            </div>
+            <div class="md:w-1/2 text-left">
+              <p class="text-lg md:text-xl text-text-muted mb-3">Hello, I'm</p>
+              <h1
+                class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-4"
+              >
+                Nguyen Doan Tien
+              </h1>
+              <h2
+                class="text-2xl md:text-3xl font-semibold text-accent-red mb-6"
+              >
+                Cybersecurity Student - Pentest Intern
+              </h2>
+              <p
+                id="hero-typing-text"
+                class="text-md md:text-lg text-text-light mb-8 max-w-2xl mx-auto md:mx-0"
+                data-text="Passionate about exploring and defending digital systems, I am a cybersecurity student actively seeking pentest internship opportunities to apply my knowledge and develop in-depth specialized skills."
+              ></p>
+              <div
+                class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4"
+              >
+                <a
+                  href="#projects"
+                  class="inline-block bg-accent-red hover:bg-red-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105"
+                >
+                  View Projects
+                </a>
+                <a
+                  href="CV_DoanTien.pdf"
+                  download
+                  class="inline-block bg-transparent border-2 border-accent-red text-accent-red hover:bg-accent-red hover:text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105"
+                >
+                  Download CV
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="py-16 md:py-24 bg-secondary-dark">
+        <div class="container mx-auto px-6 text-center">
+          <h2
+            id="about-heading"
+            class="text-3xl md:text-5xl font-bold text-white mb-12 relative pb-4"
+            data-text="About Me"
+          >
+            <span class="relative z-10"></span>
+            <span
+              class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-accent-red rounded-full"
+            ></span>
+          </h2>
+          <div
+            class="max-w-4xl mx-auto text-text-light leading-relaxed text-md md:text-lg"
+          >
+            <p class="mb-6">
+              I am a student at Academy of Cryptography Techniques, a pioneer in
+              Information Security training. Since starting my studies, I have
+              been constantly fascinated by the world of security
+              vulnerabilities and the art of network defense. I continuously
+              learn and challenge myself with complex problems in the field of
+              cybersecurity.
+            </p>
+            <p class="mb-6">
+              My goal is to become a pentest expert, helping organizations
+              strengthen their defenses against increasingly sophisticated cyber
+              threats. I have practical experience with common attack/defense
+              tools and techniques, and I am always eager to learn the latest
+              technologies.
+            </p>
+            <p>
+              I believe that a combination of specialized knowledge, critical
+              thinking, and a strong eagerness to learn will enable me to
+              contribute valuable insights to an internship environment and
+              further my career in the cybersecurity industry.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills Section -->
+      <section id="skills" class="py-16 md:py-24 bg-primary-dark">
+        <div class="container mx-auto px-6 text-center">
+          <h2
+            id="skills-heading"
+            class="text-3xl md:text-5xl font-bold text-white mb-12 relative pb-4"
+            data-text="Technical Skills"
+          >
+            <span class="relative z-10"></span>
+            <span
+              class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-accent-red rounded-full"
+            ></span>
+          </h2>
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl mx-auto"
+          >
+            <!-- Skill Card 1: Web Penetration Testing -->
+            <div
+              class="bg-secondary-dark p-8 rounded-xl shadow-red-glow border border-accent-red hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300"
+            >
+              <h3 class="text-xl md:text-2xl font-bold text-accent-red mb-4">
+                Web Penetration Testing
+              </h3>
+              <p class="text-text-light text-md">
+                Basic understanding of OWASP Top 10, XSS, SQLi, CSRF, RCE, etc.
+                Working knowledge of Burp Suite, WireShark. Completed 80% lab in
+                Portswigger Academy.
+              </p>
+            </div>
+            <!-- Skill Card 2: Network Security & SIEM Deployment -->
+            <div
+              class="bg-secondary-dark p-8 rounded-xl shadow-red-glow border border-accent-red hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300"
+            >
+              <h3 class="text-xl md:text-2xl font-bold text-accent-red mb-4">
+                Network Security Deployment
+              </h3>
+              <p class="text-text-light text-md">
+                Knowledge of TCP/IP, Firewalls, IDS/IPS, VPN. Experience in
+                deploying and configuring security system, such as IDPS,
+                Firewall, HoneyPot, etc...
+              </p>
+            </div>
+            <!-- Skill Card 3: Programming Languages -->
+            <div
+              class="bg-secondary-dark p-8 rounded-xl shadow-red-glow border border-accent-red hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300"
+            >
+              <h3 class="text-xl md:text-2xl font-bold text-accent-red mb-4">
+                Programming Languages
+              </h3>
+              <p class="text-text-light text-md">
+                Competent in Java, Familiar with reading and understanding
+                fundamental code structures in Python (scripting, automation),
+                ASM, JavaScript.
+              </p>
+            </div>
+            <!-- Skill Card 4: Operating Systems -->
+            <div
+              class="bg-secondary-dark p-8 rounded-xl shadow-red-glow border border-accent-red hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300"
+            >
+              <h3 class="text-xl md:text-2xl font-bold text-accent-red mb-4">
+                Operating Systems
+              </h3>
+              <p class="text-text-light text-md">
+                Working experience with Linux (Kali Linux, Ubuntu), Windows
+                Server.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="py-16 md:py-24 bg-secondary-dark">
+        <div class="container mx-auto px-6 text-center">
+          <h2
+            id="projects-heading"
+            class="text-3xl md:text-5xl font-bold text-white mb-12 relative pb-4"
+            data-text="Projects"
+          >
+            <span class="relative z-10"></span>
+            <span
+              class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-accent-red rounded-full"
+            ></span>
+          </h2>
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
+          >
+            <!-- Project Card 1 -->
+            <div
+              class="bg-primary-dark rounded-xl shadow-red-glow overflow-hidden border border-accent-red hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300"
+            >
+              <img
+                src="images/Penetration-Blog.jpg"
+                alt="Web Pentest Project"
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-6">
+                <h3 class="text-2xl font-bold text-accent-red mb-3">
+                  Web Application Vulnerability Analysis
+                </h3>
+                <p class="text-text-light text-md mb-4">
+                  Performed penetration testing on a sample web application,
+                  discovering and exploiting vulnerabilities such as SQL
+                  Injection, XSS, and LFI. Wrote detailed reports on
+                  vulnerabilities and proposed remediation.
+                </p>
+                <a
+                  href="http://127.0.0.1:5501/projects/web%20pentest%20write%20up.html"
+                  target="_self"
+                  class="inline-block bg-accent-red text-white font-semibold py-2 px-5 rounded-full transition-all duration-300 hover:bg-white hover:text-accent-red border border-accent-red"
+                >
+                  Details
+                </a>
+              </div>
+            </div>
+            <!-- Project Card 2 -->
+            <div
+              class="bg-primary-dark rounded-xl shadow-red-glow overflow-hidden border border-accent-red hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300"
+            >
+              <img
+                src="images/web-application-penetration-testing.webp"
+                alt="Network Defense Project"
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-6">
+                <h3 class="text-2xl font-bold text-accent-red mb-3">
+                  Security System Deployment
+                </h3>
+                <p class="text-text-light text-md mb-4">
+                  Built and configured a small SIEM environment with ELK Stack
+                  to collect, analyze logs, and detect security incidents.
+                </p>
+                <a
+                  href="http://127.0.0.1:5501/projects/Security%20System%20Deployment%20write%20up.html"
+                  target="_self"
+                  class="inline-block bg-accent-red text-white font-semibold py-2 px-5 rounded-full transition-all duration-300 hover:bg-white hover:text-accent-red border border-accent-red"
+                >
+                  Details
+                </a>
+              </div>
+            </div>
+            <!-- Project Card 3 -->
+            <div
+              class="bg-primary-dark rounded-xl shadow-red-glow overflow-hidden border border-accent-red hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300"
+            >
+              <img
+                src="images/code.png"
+                alt="CTF Challenge"
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-6">
+                <h3 class="text-2xl font-bold text-accent-red mb-3">
+                  CTF Challenges Solved
+                </h3>
+                <p class="text-text-light text-md mb-4">
+                  Participated in and solved various CTF challenges in Pwn,
+                  Reversing, Web, and Crypto categories from platforms like Hack
+                  The Box and TryHackMe.
+                </p>
+                <a
+                  href="[Link to Github or CTF Write-up]"
+                  target="_blank"
+                  class="inline-block bg-accent-red text-white font-semibold py-2 px-5 rounded-full transition-all duration-300 hover:bg-white hover:text-accent-red border border-accent-red"
+                >
+                  Details
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="py-16 md:py-24 bg-primary-dark">
+        <div class="container mx-auto px-6 text-center">
+          <h2
+            id="contact-heading"
+            class="text-3xl md:text-5xl font-bold text-white mb-12 relative pb-4"
+            data-text="Contact"
+          >
+            <span class="relative z-10"></span>
+            <span
+              class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-accent-red rounded-full"
+            ></span>
+          </h2>
+          <div
+            class="max-w-xl mx-auto bg-secondary-dark p-8 rounded-xl shadow-red-glow border border-accent-red"
+          >
+            <p class="text-text-light text-md mb-6">
+              If you have a pentest internship opportunity or would like to
+              discuss cybersecurity, feel free to contact me through the
+              channels below.
+            </p>
+            <div class="space-y-4">
+              <div
+                class="flex items-center justify-center text-text-light text-lg"
+              >
+                <!-- Icon for Email (Font Awesome or SVG) -->
+                <svg
+                  class="w-6 h-6 mr-3 text-accent-red"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                  ></path>
+                  <path
+                    d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                  ></path>
+                </svg>
+                <span class="break-all">doantiennoffical@gmail.com</span>
+              </div>
+              <div
+                class="flex items-center justify-center text-text-light text-lg"
+              >
+                <!-- Icon for Phone (SVG) -->
+                <svg
+                  class="w-6 h-6 mr-3 text-accent-red"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.75-.25 1.02L6.62 10.79z"
+                  />
+                </svg>
+                <a
+                  href="tel:+84 921 801 505"
+                  class="hover:text-accent-red transition-colors duration-300"
+                  >+84 921 801 505</a
+                >
+              </div>
+              <div
+                class="flex items-center justify-center text-text-light text-lg"
+              >
+                <!-- Icon for GitHub (Font Awesome or SVG) -->
+                <svg
+                  class="w-6 h-6 mr-3 text-accent-red"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 0C4.477 0 0 4.477 0 10c0 4.418 2.865 8.169 6.839 9.489.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.704-2.782.604-3.371-1.34-3.371-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.004.07 1.533 1.033 1.533 1.033.89 1.529 2.341 1.088 2.91.83.09-.645.349-1.088.635-1.338-2.22-.253-4.555-1.11-4.555-4.951 0-1.091.39-1.984 1.03-2.68-.103-.253-.446-1.27.098-2.659 0 0 .84-.268 2.75 1.026A9.564 9.564 0 0110 4.673c.85.006 1.7.11 2.493.324 1.909-1.294 2.748-1.026 2.748-1.026.546 1.39.202 2.406.098 2.659.64.696 1.029 1.589 1.029 2.68 0 3.85-2.339 4.694-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.579.688.481C17.146 18.164 20 14.418 20 10c0-5.523-4.477-10-10-10z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <a
+                  href="https://github.com/DoanTien09"
+                  target="_blank"
+                  class="hover:text-accent-red transition-colors duration-300"
+                  >DoanTien09</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="bg-secondary-dark py-8 px-6 md:px-12 text-center text-text-muted text-sm"
+    >
+      <div class="container mx-auto">
+        <p>&copy; 2025 Doan Tien. All rights reserved.</p>
+        <div class="flex justify-center space-x-6 mt-4">
+          <!-- Social Media Links -->
+          <a
+            href="tel:+84921801505"
+            class="text-text-muted hover:text-accent-red transition-colors duration-300"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.75-.25 1.02L6.62 10.79z"
+              />
+            </svg>
+          </a>
+          <a
+            href="https://github.com/DoanTien09"
+            target="_blank"
+            class="text-text-muted hover:text-accent-red transition-colors duration-300"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.373 3.432 9.932 8.232 11.439.6.111.82-.24.82-.53v-2.092c-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.088-.745.084-.73.084-.73 1.205.084 1.838 1.237 1.838 1.237 1.07 1.835 2.809 1.305 3.492.997.108-.775.418-1.305.762-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.312.465-2.385 1.236-3.22-.124-.3-.536-1.521.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.003.404 2.292-1.552 3.3-1.23 3.3-1.23.653 1.655.319 2.876.118 3.176.77.835 1.233 1.908 1.233 3.22 0 4.61-2.808 5.62-5.474 5.922.356.309.678.92.678 1.855v2.754c0 .292.21.604.825.503 4.8-.975 8.23-5.523 8.23-11.438 0-6.627-5.373-12-12-12z"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Typing animation function
+      function typeEffect(
+        textElement,
+        text,
+        speed,
+        cursorElementId,
+        shouldBlink
+      ) {
+        let i = 0;
+        textElement.textContent = ""; // Clear existing text
+        const cursorSpan = document.createElement("span");
+        cursorSpan.id = cursorElementId;
+        cursorSpan.classList.add("typing-cursor"); // Add a class for styling
+        textElement.appendChild(cursorSpan);
+
+        function type() {
+          if (i < text.length) {
+            textElement.textContent = text.substring(0, i + 1);
+            textElement.appendChild(cursorSpan); // Keep cursor at the end
+            i++;
+            setTimeout(type, speed);
+          } else {
+            if (shouldBlink) {
+              cursorSpan.classList.add("blinking"); // Start blinking
+            } else {
+              // Remove cursor immediately after typing if no blinking is desired
+              if (cursorSpan.parentNode) {
+                cursorSpan.parentNode.removeChild(cursorSpan);
+              }
+            }
+          }
+        }
+        type();
+      }
+
+      // Blinking cursor animation (now only used by typeEffect if shouldBlink is true)
+      function blinkCursor(cursorElement) {
+        if (cursorElement) {
+          cursorElement.classList.add("blinking");
+        }
+      }
+
+      // Intersection Observer callback for section headings
+      const observerCallback = (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const element = entry.target;
+            const text = element.dataset.text;
+            const cursorId = element.id + "-cursor";
+
+            // Check if element has already been typed to avoid re-typing on scroll
+            if (element.classList.contains("typed")) {
+              observer.unobserve(element);
+              return;
+            }
+
+            // For headings, target the inner span where the text is typed
+            const textContainer = element.querySelector(".relative.z-10");
+
+            if (textContainer) {
+              typeEffect(textContainer, text, 50, cursorId, false); // No blinking for headings
+            } else {
+              // Fallback for elements without a specific text container span
+              typeEffect(element, text, 50, cursorId, false); // No blinking for fallback
+            }
+
+            element.classList.add("typed"); // Mark as typed
+            observer.unobserve(element); // Stop observing once typed
+          }
+        });
+      };
+
+      // Create an Intersection Observer instance
+      const options = {
+        root: null, // viewport
+        rootMargin: "0px",
+        threshold: 0.5, // Trigger when 50% of the element is visible
+      };
+      const sectionObserver = new IntersectionObserver(
+        observerCallback,
+        options
+      );
+
+      window.onload = function () {
+        // Hero Section typing effect on load
+        const heroTextElement = document.getElementById("hero-typing-text");
+        if (heroTextElement) {
+          const text = heroTextElement.dataset.text;
+          // Clear initial text for hero section before typing
+          heroTextElement.textContent = "";
+          typeEffect(heroTextElement, text, 30, "hero-typing-cursor", true); // Blinking for hero text
+          heroTextElement.classList.add("typed"); // Mark as typed immediately
+        }
+
+        // Observe other headings for typing effect
+        const aboutHeading = document.getElementById("about-heading");
+        const skillsHeading = document.getElementById("skills-heading");
+        const projectsHeading = document.getElementById("projects-heading");
+        const contactHeading = document.getElementById("contact-heading");
+
+        // Clear initial text for headings and observe
+        if (aboutHeading) {
+          aboutHeading.querySelector(".relative.z-10").textContent = "";
+          sectionObserver.observe(aboutHeading);
+        }
+        if (skillsHeading) {
+          skillsHeading.querySelector(".relative.z-10").textContent = "";
+          sectionObserver.observe(skillsHeading);
+        }
+        if (projectsHeading) {
+          projectsHeading.querySelector(".relative.z-10").textContent = "";
+          sectionObserver.observe(projectsHeading);
+        }
+        if (contactHeading) {
+          contactHeading.querySelector(".relative.z-10").textContent = "";
+          sectionObserver.observe(contactHeading);
+        }
+      };
+    </script>
+  </body>
+</html>
